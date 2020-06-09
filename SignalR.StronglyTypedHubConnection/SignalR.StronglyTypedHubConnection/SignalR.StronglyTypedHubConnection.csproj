@@ -5,6 +5,10 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.1.0</Version>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <Authors>BredStik</Authors>
+    <PackageProjectUrl>https://github.com/BredStik/SignalR.StronglyTypedHubConnection</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/BredStik/SignalR.StronglyTypedHubConnection</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
