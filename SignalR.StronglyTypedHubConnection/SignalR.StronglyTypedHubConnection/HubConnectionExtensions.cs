@@ -9,6 +9,11 @@ namespace SignalR.StronglyTypedHubConnection
 {
     public static class HubConnectionExtensions
     {
+        public static Task InvokeAsync<THubType>(this HubConnection hubConnection, Expression<Action<THubType>> call)
+        {
+            return hubConnection.InvokeAsync(call, CancellationToken.None);
+        }
+
         public static async Task InvokeAsync<THubType>(this HubConnection hubConnection, Expression<Action<THubType>> call, CancellationToken cancellationToken)
         {
             var methodCall = (MethodCallExpression)call.Body;
@@ -16,6 +21,11 @@ namespace SignalR.StronglyTypedHubConnection
             var arguments = methodCall.Arguments.Select(GetValue).ToArray();
 
             await hubConnection.InvokeCoreAsync(methodName, arguments, cancellationToken).ConfigureAwait(false);
+        }
+
+        public static Task<TResult> InvokeAsync<THubType, TResult>(this HubConnection hubConnection, Expression<Func<THubType, TResult>> call)
+        {
+            return hubConnection.InvokeAsync(call, CancellationToken.None);
         }
 
         public static async Task<TResult> InvokeAsync<THubType, TResult>(this HubConnection hubConnection, Expression<Func<THubType, TResult>> call, CancellationToken cancellationToken)
